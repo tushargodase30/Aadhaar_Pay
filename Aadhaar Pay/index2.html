@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Kiosk</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+
+  <link href="assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <header id="header" class="fixed-top  header-transparent ">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <h1><a href="index.html"><img src="assets/img/aadharLogo123-removebg-preview.png" alt=""
+              style="width: 100px;"></a></h1>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#servises">Services</a></li>
+          <li><a class="nav-link scrollto" href="#faq">Blog</a></li>
+          <li class="dropdown"><a href="#"><span>Products</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Products</a></li>
+              <li class="dropdown"><a href="#"><span>ATM Machine</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="kiosk.html">Kiosk ATM</a></li>
+                  <li><a href="kiosk.html ">Self Service Kiosk</a></li>
+                  <li><a href="kiosk.html">POS</a></li>
+                  <li><a href="kiosk.html">AePS</a></li>
+                  <li><a href="upibox.html">UPI Sound Box</a></li>
+
+
+                </ul>
+              </li>
+
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Partner With Us</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="partner.html">Franchise</a></li>
+
+              <li><a href="depositor.html"> State Franchise</a></li>
+
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="career.html">Career</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="getstarted scrollto" href="#login">Login</a></li>
+
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+    </div>
+  </header>
+
+
+
+
+  <section id="hero1" class="d-flex align-items-center">
+    <div class="container" style="padding:30px;">
+      <div class="row">
+        <div
+          class="col-lg-6 d-lg-flex flex-lg-column justify-content-center align-items-stretch pt-5 pt-lg-0 order-2 order-lg-1"
+          data-aos="fade-up">
+          <div>
+            <h1 id="mainheading">Sciero Adhar Fintech Services India Private Limited </h1>
+            <script>
+              class Pratik_GT_textAp {
+
+                //Constructor : takes all required values from user.
+                constructor(gt_take_string_from_user, gt_take_time_from_user, gt_take_id_from_user) {
+                  //gt_loop_temp : temp variable
+                  this.gt_loop_temp = "";
+
+                  //gt_loop_loop : for creating loop
+                  this.gt_loop_loop = 0;
+
+                  //gt_splited_str : List of characters after spliting given string
+                  this.gt_splited_str = gt_take_string_from_user.split("");
+
+                  //gt_splited_str_len : length of characters (gt_splited_str) 
+                  this.gt_splited_str_len = this.gt_splited_str.length;
+
+                  //gt_appear_time : given delay time given by user
+                  this.gt_appear_time = gt_take_time_from_user;
+
+                  //gt_got_id : id of a DOM element given by user 
+                  this.gt_got_id = gt_take_id_from_user;
+
+                  //main operation Starts from here
+                  this.gt_loop();
+                }
+
+                //gt_loop() : handles the loop till the number of characters
+                gt_loop() {
+                  if (this.gt_loop_loop < this.gt_splited_str_len) {
+                    this.gt_addText();
+                  }
+                }
+
+                //gt_addText : add characters to the DOM element
+                async gt_addText() {
+                  this.gt_loop_temp = this.gt_loop_temp + this.gt_splited_str[this.gt_loop_loop];
+                  document.getElementById(this.gt_got_id).innerHTML = this.gt_loop_temp;
+
+                  //increasing loop value
+                  this.gt_loop_loop = this.gt_loop_loop + 1;
+
+                  //delay till the provided delay time
+                  await this.gt_resolve20();
+                  this.gt_loop();
+                }
+
+                gt_resolve20() {
+                  //returns the await prommise
+                  return new Promise(resolve => {
+                    setTimeout(() => {
+                      resolve('go');
+                    }, this.gt_appear_time);
+                  });
+                }
+
+              }
+            </script>
+            <p>
+            <h5>Self Service KIOSK & ATM Manufacturer Provider of financial softwares & Payment Gateway</h2>
+
+              </p>
+
+
+          </div>
+        </div>
+        <div class="col-lg-6 d-lg-flex flex-lg-column align-items-stretch order-1 order-lg-2 " data-aos="fade-up">
+          <img src="assets/img/OIP__1_-removebg-preview.png" class="img-fluid" alt=""
+            style="width:600px; height: 400px; ">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="hero" class="d-flex align-items-center" style="background-color: white;">
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-lg-6 d-lg-flex flex-lg-column justify-content-center align-items-stretch pt-10 pt-lg-0 order-2 order-lg-1"
+          data-aos="fade-up">
+          <img
+            src="assets/img/pl17495556-atm_kiosk_bill_payment_kiosk_with_custom_desgin_and_sercurity_pinpad_emv_bank_card_reader_cash_acceptor_etc_by_lkskiosk-removebg-preview.png"
+            class="img-fluid" alt="" style="width: 500px;">
+        </div>
+        <div class="col-lg-6 d-lg-flex flex-lg-column align-items-stretch order-1 order-lg-2 hero-img"
+          data-aos="fade-up">
+          <div>
+            <h1>Kiosk ATM</h1>
+            <p>
+            <p>Our Kiosk ATM is designed to provide you with quick and convenient access to your banking needs. Whether
+              you need to withdraw cash, check your account balance, or transfer funds, our kiosk ATM is here to help.
+            </p>
+            <ul>
+              <li>24/7 Access: Our kiosk ATM is available 24 hours a day, 7 days a week, so you can bank on your
+                schedule.</li>
+              <li>Cash Withdrawals: Easily withdraw cash from your account without the need to visit a bank branch.</li>
+              <li>Balance Inquiries: Check your account balance quickly and easily.</li>
+              <li>Transfer Funds: Transfer funds between your accounts or to another account within our network.</li>
+              <li>Receipt Printing: Print a receipt for your transaction for your records.
+
+              </li>
+            </ul>
+            </p>
+            <a class="nav-link scrollto active" href="kiosk.html"> <button type="button" id="update" name="update"
+                class="btn btn-primary" href>Know More</button></a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <h1></h1>
+  <section id="hero1" class="d-flex align-items-center">
+    <div class="container" style="padding:30px;">
+      <div class="row">
+        <div
+          class="col-lg-6 d-lg-flex flex-lg-column justify-content-center align-items-stretch pt-5 pt-lg-0 order-2 order-lg-1"
+          data-aos="fade-up">
+          <div>
+            <h1>Micro POS Solutions and Micro ATM</h1>
+            <p>
+            <h5>A Hybrid compact device for POS transactions as well as for cash withdrawals.</h2>
+              <ul>
+                <li>Most Affordable
+
+                </li>
+                <li>Paperless Transactions</li>
+                <li>Long lasting Li-ion battery</li>
+                <li>
+                  Sleek 128x64 px LCD display</li>
+                <li>Secure Transactions
+                </li>
+              </ul>
+              </p>
+              <a class="nav-link scrollto active" href="poses.html"> <button type="button" id="update" name="update"
+                  class="btn btn-primary" href>Know More</button></a>
+
+          </div>
+        </div>
+        <div class="col-lg-6 d-lg-flex flex-lg-column align-items-stretch order-1 order-lg-2 hero-img"
+          data-aos="fade-up">
+          <img src="assets/img/HTB1nft0xv5TBuNjSspcq6znGFXan-removebg-preview.png" class="img-fluid" alt=""
+            style=" padding-left: 10%;">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <main id="main">
+
+
+
+
+
+
+
+    <section id="servises" class="service">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+
+          <h2>Services</h2>
+          <h5>ATM SERVICES
+
+          </h5>
+          <p>Enjoy a host of services at any of Aadhaar Pay. Our dip-and-draw machines ensure safe usage of ATMs with no
+            usage charges and assured cash availability.
+
+            Utmost care has been taken to ensure that every Aadhaar Pay is easily accessible to customers, easy to
+            operate
+            in your own language and is safe to transact keeping in mind all the regulatory requirements of RBI and
+            other authorities. Enjoy host of services at Aadhaar Pay.
+          </p>
+
+        </div>
+
+        <div class="container" data-aos="fade-up">
+
+          <div class="row" style="padding: 20px;">
+            <div class="col-lg-3">
+              <div class="card">
+                <center> <img src="assets/img/s1-removebg-preview.png" class="card-img-top" alt="..." class="center"
+                    style="width: 120px;height: 130px;padding-top: 20px;"></center>
+
+                <div class="card-body">
+                  <h5>POS Machine</h5>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3">
+              <div class="card">
+                <center> <img src="assets/img/S2.png" class="card-img-top" alt="..."
+                    style="width: 120px;height: 130px;padding-top: 20px;"></center>
+                <div class="card-body">
+                  <h5>AEPS</h5>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3">
+
+              <div class="card">
+                <center> <img src="assets/img/S3.webp" class="card-img-top" alt="..."
+                    style="width: 120px;height: 130px;padding-top: 20px;">
+                </center>
+                <div class="card-body">
+                  <h5>Micro ATM</h5>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3">
+
+              <div class="card">
+                <center> <img src="assets/img/S4.png" class="card-img-top" alt="..."
+                    style="width: 120px;height: 130px;padding-top: 20px;"></center>
+
+                <div class="card-body">
+                  <h5>Education</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row" style="padding: 20px;">
+            <div class="col-lg-3">
+              <div class="card">
+                <center> <img src="assets/img/S5.avif" class="card-img-top" alt="..." class="center"
+                    style="width: 120px;height: 130px;padding-top: 20px;"></center>
+
+                <div class="card-body">
+                  <h5>Loan </h5>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3">
+              <div class="card">
+                <center> <img src="assets/img/S6.avif" class="card-img-top" alt="..."
+                    style="width: 120px;height: 130px;padding-top: 20px;"></center>
+                <div class="card-body">
+                  <h5>ATM Card</h5>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3">
+
+              <div class="card">
+                <center> <img src="assets/img/S7.avif" class="card-img-top" alt="..."
+                    style="width: 120px;height: 130px;padding-top: 20px;">
+                </center>
+                <div class="card-body">
+                  <h5>UPI</h5>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3">
+
+              <div class="card">
+                <center> <img src="assets/img/S8-removebg-preview.png" class="card-img-top" alt="..."
+                    style="width: 120px;height: 130px;padding-top: 10px;"></center>
+
+                <div class="card-body">
+                  <h5>Kiosk Self </h5>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section id="faq" class="faq section-bg">
+      <div class="class"></div>
+    </section>
+
+
+
+
+
+    <section id="faq" class="faq section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+
+          <h2>Frequently Asked Questions</h2>
+
+        </div>
+
+        <div class="accordion-list">
+          <ul>
+            <li data-aos="fade-up">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse"
+                data-bs-target="#accordion-list-1">How can kiosks benefit my business? <i
+                  class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
+                <p>
+                  Kiosks can benefit your business by improving customer service, reducing wait times, increasing sales
+                  opportunities, gathering valuable data for analytics, and enhancing operational efficiency.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="100">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
+                data-bs-target="#accordion-list-2" class="collapsed">What types of kiosks do you offer? <i
+                  class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
+                <p>
+                  We offer a variety of kiosks including informational kiosks, payment kiosks, ticketing kiosks,
+                  self-service ordering kiosks, and interactive digital signage kiosks.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="200">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
+                data-bs-target="#accordion-list-3" class="collapsed">Are your kiosk customizable?<i
+                  class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
+                <p>
+                  Yes, our kiosks are customizable to meet your specific requirements including branding, user interface
+                  design, functionality, and integration with existing systems.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="300">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
+                data-bs-target="#accordion-list-4" class="collapsed">How secure are transactions made through your
+                kiosk? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="accordion-list-4" class="collapse" data-bs-parent=".accordion-list">
+                <p>
+                  Our kiosks are designed with robust security measures including encryption, authentication mechanisms,
+                  and secure connections to ensure the safety of transactions and user data.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="400">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
+                data-bs-target="#accordion-list-5" class="collapsed">What maintenance is required for your kiosk?<i
+                  class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="accordion-list-5" class="collapse" data-bs-parent=".accordion-list">
+                <p>
+                  Maintenance for our kiosks typically involves regular cleaning, software updates, hardware
+                  inspections, and troubleshooting of any technical issues. We also offer remote monitoring and support
+                  services.
+                </p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <section id="testimonials" class="testimonials section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Testimonials</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
+            consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit
+            in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="assets/img/testimonials/t.png" class="testimonial-img" alt="">
+                <h3>Ranjeet varma</h3>
+                <h4>Ceo &amp; Founder</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  We have been using their ATM machines for several years now, and we are extremely satisfied with their
+                  performance. The machines are reliable, secure, and easy to use."
+
+                  John Smith, Financial Manager at XYZ Bank
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="assets/img/testimonials/t.png" class="testimonial-img" alt="">
+                <h3>Sushil </h3>
+                <h4>Designer</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Their customer service is top-notch! Whenever we've had any issues or needed assistance, their team
+                  has been quick to respond and resolve the issue. Highly recommended.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="assets/img/testimonials/t1.png" class="testimonial-img" alt="">
+                <h3>Arya </h3>
+                <h4>Store Owner</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  The ATM machines provided by them have helped us serve our customers better. The machines are robust
+                  and have significantly reduced our maintenance costs.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="assets/img/testimonials/t.png" class="testimonial-img" alt="">
+                <h3>Sandeep </h3>
+                <h4>Freelancer</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  We switched to their ATM machines recently, and it has been a great decision for our business. The
+                  machines are modern, user-friendly, and have improved our customers' experience.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="assets/img/testimonials/t.png" class="testimonial-img" alt="">
+                <h3>Varun</h3>
+                <h4>Entrepreneur</h4>
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Their ATM machines have been a valuable addition to our business. The machines are secure, and the
+                  transaction process is smooth and reliable.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+              </div>
+            </div>
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="about1" class="d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <h1>About Us </h1>
+
+
+          <div class="col-lg-6 " data-aos="fade-up">
+
+            <img src="assets/img/banking-industry-concept-illustration_114360-17354.avif" class="img-fluid" alt=""
+              style="padding: 60px;">
+          </div>
+          <div class="col-lg-6 d-lg-flex flex-lg-column align-items-stretch order-1 order-lg-2 hero-img"
+            data-aos="fade-up">
+            <div style="margin-top: 80px;">
+
+              <p>
+              <h2>WHO WE ARE</h2>
+              <p1>At Aadhaar Pay, our idea is to make digital payment facilities affordable and feasible for
+                everybody. Our products and services are aimed to facilitate all types of B2B and B2C
+                transactions with utmost safety and speed. We not only complete all transactions at the
+                least cost but also reward users with attractive and instant rewards. These rewards are a
+                way to give back to the customers for using our platform as we believe that banking
+                transactions are meant for everybody and there shouldn’t be any delay or hidden charges in
+                it. Rewards and seasonal bonuses for various transaction options are regularly provided.
+                This makes sure paying online is not the same anymore. Our payment gateways are built using
+                the strongest security to ensure that your privacy is always respected. So that your
+                information always remains unknown to the world.</p1>
+
+              </p>
+            </div>
+
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="col-lg-12">
+          <p>
+              In this race to make digital payment a norm within people, we aim to spread more and more of our technology in the rural and semi-urban areas of our country. This is so that we can successfully connect semi-rural and rural areas to make our country stronger and digitally advanced.
+
+Together our team is working every second to make your payment gateway safer and faster than ever. And we are slowly climbing towards our dream of becoming the biggest payment solution provider in the country.
+          </p>
+         </div>
+         </div> -->
+        <div class="row">
+
+          <div class="col-lg-6 " data-aos="fade-up" style="margin-top: 100px;">
+
+            <p>
+            <h2>WHY US
+            </h2>
+            <p> Aadhaar Pay provides fast and secure payment solutions for all types of business transactions.
+              Started by two genuine people with over 12+ years of experience in the banking sector combined,
+              our team is lead by two of the highest caliber bankers in the business. We provide only the best
+              service that is available out there. And in this pursuit to making digital transactions cheaper
+              and more secure, we have specialised our services which provide:-
+
+            </p>
+            <ul>
+              <li> The strongest security mechanism possible to keep all kinds of data secure
+                Fast service so that your payment completes instantly every time </li>
+              <li> 24/7 customer support service to solve all your problems
+                Support to all major payment methods</li>
+              <li> Partnered with all leading banks in the country</li>
+              <li> Cutting edge technology with regular updates to make it better every day</li>
+            </ul>
+            </p>
+          </div>
+          <div class="col-lg-6 d-lg-flex flex-lg-column align-items-stretch order-1 order-lg-2 hero-img"
+            data-aos="fade-up">
+            <div>
+
+              <img src="assets/img/education-scholarship-on-loan-people-vector-47380136-removebg-preview.png"
+                class="img-fluid" alt="" style="width: 500px;">
+
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+    </section>
+
+
+
+    <section id="testimonials" class="testimonials section-bg">
+
+
+      <div class="section-title">
+        <h2>OUR BUSINESS & BANKING PARTNER</h2>
+
+
+        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="conveyor-belt" style="text-align: center;margin-top: 10px;">
+
+            <div class="image-wrapper">
+              <img src="assets/img/1.png" alt="Image 1" s>
+              <img src="assets/img/2.png" alt="Image 2">
+              <img src="assets/img/3p.png" alt="Image 3">
+              <img src="assets/img/4.png" alt="Image 4">
+              <img src="assets/img/5.png" alt="Image 5">
+              <img src="assets/img/6.png" alt="Image 6">
+              <img src="assets/img/1.png" alt="Image 7">
+              <img src="assets/img/2.png" alt="Image 8">
+              <img src="assets/img/3p.png" alt="Image 9">
+              <img src="assets/img/4.png" alt="Image 10">
+              <img src="assets/img/5.png" alt="Image 1">
+              <img src="assets/img/6.png" alt="Image 2">
+              <img src="ssets/img/1.png" alt="Image 3">
+              <img src="assets/img/2.png" alt="Image 4">
+              <img src="assets/img/3p.png" alt="Image 5">
+              <img src=".assets/img/4.png" alt="Image 6">
+              <img src="assets/img/5.png" alt="Image 7">
+              <img src="assets/img/6.png" alt="Image 8">
+              <img src="assets/img/3p.png" alt="Image 9">
+              <img src="assets/img/4.png" alt="Image 10">
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Contact</h2>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-lg-6 info">
+                <i class="bx bx-map"></i>
+                <h4>Address</h4>
+                <p>F 18 West Nizamuddin ,<br>New Delhi 110013</p>
+              </div>
+              <div class="col-lg-6 info">
+                <i class="bx bx-phone"></i>
+                <h4>Call Us</h4>
+                <p>9818251689<br>9911558344</p>
+              </div>
+              <div class="col-lg-6 info">
+                <i class="bx bx-envelope"></i>
+                <h4>Email Us</h4>
+                <p>aadhaarpay@mail.com<br>info@example.com</p>
+              </div>
+              <div class="col-lg-6 info">
+                <i class="bx bx-time-five"></i>
+                <h4>Working Hours</h4>
+                <p>Mon - Fri: 9AM to 8PM<br>Sunday: 9AM to 1PM</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <form name="submit-to-google-sheet" class="php-email-form" data-aos="fade-up">
+              <div class="form-group">
+                <input placeholder="Your Name" type="text" name="Name" class="form-control" id="name" required>
+              </div>
+              <div class="form-group mt-3">
+                <input placeholder="Your Email" type="email" class="form-control" name="Email" id="email" required>
+              </div>
+              <div class="form-group mt-3">
+                <input placeholder="Subject" type="text" class="form-control" name="Subject" id="subject" required>
+              </div>
+              <div class="form-group mt-3">
+                <textarea placeholder="Message" class="form-control" name="Message" rows="5" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+
+  </main>
+
+
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <script src="assets/js/main.js"></script>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxFjxERZnR13rlJXM2tlQHVl8Rhu-v1X7o_gbZ-QshmXdFErw3IW61J-R0vIN2VTImBGA/exec'
+    const form = document.forms['submit-to-google-sheet']
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => console.log('Success!', response))
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+  <script>
+
+    function sendEmail() {
+      Email.send({
+        Host: "smtp.gmail.com",
+        Username: "sakshinimbore2020.comp@mmcoe.edu.in",
+        Password: "Shivaisha2002@",
+        To: 'sakshinimbore7@gmail.com',
+        From: document.getElementById("email").value,
+        Subject: "This is the subject",
+        Body: "And this is the body"
+      }).then(
+        message => alert(message)
+      );
+
+    }
+
+    function openPopup() {
+      document.getElementById('popupModal').style.display = 'block';
+    }
+
+    function closePopup() {
+      document.getElementById('popupModal').style.display = 'none';
+    }
+
+    window.onload = () => {
+      var run = new Pratik_GT_textAp("Aadhaar pay", 80, "mainheading");
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const conveyorBelt = document.querySelector('.conveyor-belt');
+
+      function stopConveyor() {
+        conveyorBelt.style.animationPlayState = 'paused';
+      }
+
+      function startConveyor() {
+        conveyorBelt.style.animationPlayState = 'running';
+      }
+
+      conveyorBelt.addEventListener('mouseenter', stopConveyor);
+      conveyorBelt.addEventListener('mouseleave', startConveyor);
+
+      const images = document.querySelectorAll('.conveyor-belt img');
+      images.forEach(img => {
+        img.addEventListener('mouseenter', stopConveyor);
+        img.addEventListener('mouseleave', startConveyor);
+      });
+    });
+
+
+
+
+    <!--Start of Tawk.to Script-->
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/65d737a09131ed19d9701141/1hn8b2j7p';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  </script>
+  <!--End of Tawk.to Script-->
+
+</body>
+
+</html>

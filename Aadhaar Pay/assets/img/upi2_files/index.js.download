@@ -1,0 +1,535 @@
+﻿var gblToken;
+var mmToken;
+
+// ********* UAT *********
+// const loginApi = "https://uat.mswipetech.co.in/MswipePortalAPI/api/MswipePortalApi/gettoken";
+// const tokenApi = "https://gbluat.mswipetech.co.in:2022/api/v2/generate-token";
+// const leadApi = "https://gbluat.mswipetech.co.in:2022/api/v3/lead/create";
+// const franchiseApi = "https://uatbackoffice.mswipetech.co.in/api/update_franchisee_lead";
+
+// ********* LIVE *********
+const loginApi = "https://mob.mswipetech.com/MswipePortalApi/gettoken";
+const tokenApi = "https://gblapi.mswipeota.com:2020/api/v2/generate-token";
+const leadApi = "https://gblapi.mswipeota.com:2020/api/v3/lead/create";
+const franchiseApi = "https://backoffice.mswipetech.co.in/api/update_franchisee_lead";
+
+function ShowLoader() {
+    if (document.getElementById("loading")) {
+        document.getElementById("loading").style.display = "Block";
+    }
+}
+
+function HideLoader() {
+    if (document.getElementById("loading")) {
+        document.getElementById("loading").style.display = "none";
+    }
+}
+
+function getLogin() {
+    ShowLoader();
+    var uid = $("#email_id").val();
+    var passwd = $("#phone_number").val();
+    if (uid.length === 0 || uid.length === '') {
+        $("#lblMsg").html("Invalid Credential");
+        HideLoader();
+    }
+    else if (passwd.length === 0 || passwd.length === '') {
+        $("#lblMsg").html("Invalid Credential");
+        HideLoader();
+    }
+    else {
+        var pram = uid + "|" + passwd;
+        var strResponseStatus = "";
+        var strUser = "";
+        var obj = { "username": uid, "password": passwd };
+        var loginStr = btoa(JSON.stringify(obj));
+        $.ajax({
+            type: "POST",
+            contentType: "application/json;",
+            url: loginApi,
+            data: JSON.stringify(obj),
+            // dataType: "json",
+            success: function (msg) {
+                console.log(msg);
+                if (msg['status']) {
+                    localStorage.setItem('merchantData', loginStr);
+                    setTimeout(() => {
+                        window.location.href = "./MERCHANTPORTAL/";
+                    }, 500);
+                    HideLoader();
+                } else {
+                    $("#lblMsg").html(msg['responsemessage']);
+                    HideLoader();
+                }
+                // if (msg.d === "") {
+                //     $("#lblMsg").html("Your login attempt was not successful. Please try again.");
+                //     HideLoader();
+                // }
+                // else {
+                //     strResponse = parsedData[0].Validation;
+                //     // alert(strResponse);
+                //     strUser = parsedData[0].User;
+                //     if (strResponse === "Sucessfull") {
+                //         window.location.href = "merchant-portal.aspx";
+                //         $("#lblMsg").html("");
+                //     }
+                //     else if (strResponse === "ChangePwd") {
+                //         $("#lblMsg").html("Your login attempt was not successful.");
+                //         HideLoader();
+                //     }
+                //     else if (strResponse === "exceed") {
+                //         $("#lblMsg").html("There have been more than 5 failed login attempts for this account, Please try after an hour");
+                //         HideLoader();
+                //     }                     
+                //     else {
+                //         $("#lblMsg").html("Invalid Credential");
+                //         HideLoader();
+                //     }
+                // }
+            },
+            error: function (error) {
+                alert('error; ' + eval(error));
+                HideLoader();
+            }
+        });
+    }
+}
+
+$(document).ready(function () {
+    //the trigger on hover when cursor directed to this class
+    $(".core-menu .main_li").hover(
+        function () {
+            //i used the parent ul to show submenu
+            $(this).children('ul').slideDown('fast');
+            // $(this).children('ul').fadeIn('fast');
+            // $(this).hide('slide', {direction: 'right'}, 1000);
+        },
+        //when the cursor away 
+        function () {
+            $('ul', this).slideUp('fast');
+            // $('ul', this).fadeOut('fast');
+            // $(this).hide('slide', {direction: 'left'}, 1000);
+        });
+
+    $(".n_dropdown li").hover(
+        function () {
+            //i used the parent ul to show submenu
+            $(this).children('ul').show();
+            // $(this).children('ul').fadeIn('fast');
+            // $(this).hide('slide', {direction: 'right'}, 1000);
+        },
+        //when the cursor away 
+        function () {
+            $('ul', this).hide();
+            // $('ul', this).fadeOut('fast');
+            // $(this).hide('slide', {direction: 'left'}, 1000);
+        });
+    //this feature only show on 600px device width
+    $(".hamburger-menu").click(function () {
+        $(".burger-1, .burger-2, .burger-3").toggleClass("open");
+        $("body").toggleClass("body_fixed");
+        $(".hamburger-menu").toggleClass("mobile_open");
+        // $(".core-menu").slideToggle("fast");
+        $(".collapse").removeClass("show");
+        $(".main_btn").addClass("collapsed");
+        $(".new_mobile_menu").slideToggle("fast");
+        // $('.new_mobile_menu').css('display', 'block');          
+    });
+});
+
+function generateToken() {
+    const sendObj = {
+        "access_key": "mswipedigital",
+        "access_secret": "Mswipe!@3214!Digital"
+    }
+    ShowLoader();
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: tokenApi,
+        data: JSON.stringify(sendObj),
+        // dataType: "json",
+        success: function (response) {
+            // console.log(response);
+            if (response.token) {
+                HideLoader();
+                gblToken = response.token;
+            }
+
+        },
+        error: function (error) {
+            alert('Something went wrong');
+            HideLoader();
+        },
+    });
+}
+
+function createBankingLead(args) {
+    // console.log(args);
+    const sendObj = {
+        "phone": args.mobile,
+        "name": args.name,
+        "partner_name": "Mswipe",
+        "email_from": args.email,
+        "pan": args.mobile,
+        "mswipe_source_id": args.source_id,
+        "mswipe_sub_source_id": args.sub_source_id,
+        "campaign": args.utm_campaign,
+        "description": "",
+        "mswipe_sales_team_id": 1,
+        "city": "",
+        "pincode": "",
+        "Product": args.product,
+        "UTM_Source": args.utm_source,
+        "UTM_Campaign": args.utm_campaign,
+        "UTM_Medium": args.utm_medium,
+        "business_type": args.business_type,
+        "remarks": args.remarks
+    }
+    // console.log(sendObj);
+    // return false;
+    ShowLoader();
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        headers: {
+            Authorization: 'Bearer ' + gblToken,
+        },
+        url: leadApi,
+        data: JSON.stringify(sendObj),
+        // dataType: "json",
+        success: function (response) {
+            console.log(response);
+            if (response.existing) {
+                HideLoader();
+                alert("Your request is already submitted");
+            } else {
+                HideLoader();
+                window.location.href = "thank_you.html";
+                sessionStorage.removeItem(
+                    'atmUtmParams',
+                    JSON.stringify(atmUtmParams)
+                );
+            }
+
+        },
+        error: function (error) {
+            alert('Something went wrong');
+            HideLoader();
+        },
+    });
+}
+
+function createLead(args) {
+    console.log(args);
+    const sendObj = {
+        "phone": args.mobile,
+        "name": args.name,
+        "partner_name": "Mswipe",
+        "email_from": args.email,
+        "pan": args.mobile,
+        "mswipe_source_id": args.source_id,
+        "mswipe_sub_source_id": args.sub_source_id,
+        "campaign": args.utm_campaign,
+        "description": "",
+        "mswipe_sales_team_id": 1,
+        "city": args.city,
+        "state": args.state,
+        "pincode": args.pin,
+        "Product": args.product,
+        "UTM_Source": args.utm_source,
+        "UTM_Campaign": args.utm_campaign,
+        "UTM_Medium": args.utm_medium
+    }
+    console.log(sendObj);
+    // return false;
+    ShowLoader();
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        headers: {
+            Authorization: 'Bearer ' + gblToken,
+        },
+        url: leadApi,
+        data: JSON.stringify(sendObj),
+        // dataType: "json",
+        success: function (response) {
+            console.log(response);
+            if (response.existing) {
+                HideLoader();
+                alert("Your request is already submitted");
+            } else {
+                HideLoader();
+                window.location.href = "thank_you.html";
+                sessionStorage.removeItem(
+                    'atmUtmParams',
+                    JSON.stringify(atmUtmParams)
+                );
+            }
+
+        },
+        error: function (error) {
+            alert('Something went wrong');
+            HideLoader();
+        },
+    });
+}
+
+function createLeadBoombox(args) {
+    console.log(args);
+    var source_id;
+    var sub_source_id;
+    if (args.utm_source === 'Amazon') {
+        // uat
+        source_id = 18;
+
+        // live
+        // source_id = 9;
+    }
+    if (args.utm_medium === 'Google') {
+        // uat
+        sub_source_id = 82;
+
+        // live
+        // sub_source_id = 25;
+    } else {
+        // uat
+        sub_source_id = 83;
+
+        // live
+        // sub_source_id = 26;
+    }
+    const sendObj = {
+        "phone": args.mobile,
+        "name": args.name,
+        "partner_name": "Mswipe",
+        "email_from": args.email,
+        "pan": args.mobile,
+        "mswipe_source_id": '',
+        "mswipe_sub_source_id": '',
+        "campaign": args.utm_campaign,
+        "description": "",
+        "mswipe_sales_team_id": 1,
+        "city": args.city,
+        "state": args.state,
+        "pincode": args.pin,
+        "Product": args.product,
+        "UTM_Source": args.utm_source,
+        "UTM_Campaign": args.utm_campaign,
+        "UTM_Medium": args.utm_medium
+    }
+    console.log(sendObj);
+    // return false;
+    ShowLoader();
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        headers: {
+            Authorization: 'Bearer ' + gblToken,
+        },
+        url: leadApi,
+        data: JSON.stringify(sendObj),
+        // dataType: "json",
+        success: function (response) {
+            console.log(response);
+            if (response.existing) {
+                HideLoader();
+                alert("Your request is already submitted");
+            } else {
+                HideLoader();
+                window.location.href = "thank_you.html";
+                // $('#boomboxModalCenter').modal('toggle');
+                sessionStorage.removeItem(
+                    'atmUtmParams',
+                    JSON.stringify(atmUtmParams)
+                );
+            }
+
+        },
+        error: function (error) {
+            alert('Something went wrong');
+            HideLoader();
+        },
+    });
+}
+
+function createLeadV2(args) {
+    console.log(args);
+    const sendObj = {
+        "amount": '354.00',
+        "phone": args.mobile,
+        "name": args.name,
+        "partner_name": "Mswipe",
+        "email_from": args.email,
+        "pan": args.mobile,
+        "mswipe_source_id": args.source_id,
+        "mswipe_sub_source_id": args.sub_source_id,
+        "campaign": args.utm_campaign,
+        "description": "",
+        "mswipe_sales_team_id": 15,
+        "city": args.city,
+        "pincode": args.pin,
+        "Product": args.utm_campaign,
+        "UTM_Source": args.utm_source,
+        "UTM_Campaign": args.utm_campaign,
+        "UTM_Medium": args.utm_medium,
+        "state": args.state,
+        "address": args.address
+    }
+    console.log(sendObj);
+    // return false;
+    ShowLoader();
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        headers: {
+            Authorization: 'Bearer ' + gblToken,
+        },
+        url: leadApi + '?accept_payment=yes',
+        data: JSON.stringify(sendObj),
+        // dataType: "json",
+        success: function (response) {
+            console.log(response);
+            if (response.existing) {
+                HideLoader();
+                if (response['payment-status'] === 'Successful') {
+                    alert("Your request is already submitted");
+                } else {
+                    if (response.sms_link) {
+                        window.location.href = response.sms_link;
+                    } else {
+                        alert("Something went wrong");
+                    }
+                    sessionStorage.removeItem(
+                        'atmUtmParams',
+                        JSON.stringify(atmUtmParams)
+                    );
+                }
+            } else {
+                HideLoader();
+                window.location.href = response.sms_link;
+                sessionStorage.removeItem(
+                    'atmUtmParams',
+                    JSON.stringify(atmUtmParams)
+                );
+            }
+
+        },
+        error: function (error) {
+            alert('Something went wrong');
+            HideLoader();
+        },
+    });
+}
+
+function getCity(args) {
+    console.log(args);
+    const sendObj = {
+        "pinCode": args,
+        "searchText": '',
+    }
+    console.log(sendObj);
+    // return false;
+    ShowLoader();
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "https://www.mswipetech.co.in/ERPBankPortalApi/api/ERPMOB/GetPinCodeWiseLocalityDetails",
+        data: JSON.stringify(sendObj),
+        // dataType: "json",
+        success: function (response) {
+            console.log(response);
+            if (response.existing) {
+                HideLoader();
+                // alert("Your request is already submitted");
+            } else {
+                HideLoader();
+                // window.location.href = "thank_you.html";
+                // sessionStorage.removeItem(
+                //     'atmUtmParams',
+                //     JSON.stringify(atmUtmParams)
+                // );
+            }
+
+        },
+        error: function (error) {
+            alert('Something went wrong');
+            HideLoader();
+        },
+    });
+}
+
+function submitFranchiseForm(args) {
+    console.log(args);
+    const sendObj = {
+        "lead_id": args.lead_id,
+        "first_name": args.first_name,
+        "surname": args.surname,
+        "home_address_line_one": args.home_address_line_one,
+        "home_address_line_two": args.home_address_line_two,
+        "city": args.city,
+        "state": args.state,
+        "date_of_birth": args.date_of_birth,
+        "highest_education_level": args.highest_education_level,
+        "total_years_of_experience": args.total_years_of_experience,
+        "are_you_a": args.are_you_a,
+        "name_of_the_company": args.name_of_the_company,
+        "name_of_the_employer": args.name_of_the_employer,
+        "type_of_job": args.type_of_job,
+        "industry": args.industry,
+        "annual_turnover": args.annual_turnover,
+        "annual_income": args.annual_income,
+        "briefly_describe_your_business": args.briefly_describe_your_business,
+        "briefly_describe_your_role": args.briefly_describe_your_role,
+        "briefly_describe_your_work": args.briefly_describe_your_work,
+        "any_sales_experience": args.any_sales_experience,
+        "experience_in_selling_financial_services": args.experience_in_selling_financial_services,
+        "location_interested_for_franhcise": args.location_interested_for_franhcise,
+        "city_name": args.city_name,
+        "pincode": args.pincode,
+        "comfortable_investment_range": args.comfortable_investment_range,
+    }
+    console.log(sendObj);
+    // return false;
+    ShowLoader();
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: franchiseApi,
+        data: JSON.stringify(sendObj),
+        success: function (response) {
+            console.log(response);
+            if (response.result) {
+                if (response.result.success) {
+                    HideLoader();
+                    $("#franchiseForm")[0].reset();
+                    alert("Your request is submited successfully.");
+                } else {
+                    HideLoader();
+                    alert(response.result.error_message);
+                }
+            } else {
+                HideLoader();
+                alert(error.data.message);
+            }
+        },
+        error: function (error) {
+            alert('Something went wrong');
+            HideLoader();
+        },
+    });
+}
+
+function RedirectURL() {
+    if ((window.location.href).includes('mswipe.com')) {
+        window.open(
+            'https://www.mswipe.com/developer-portal/login',
+            '_blank'
+        );
+    } else {
+        window.open(
+            'https://dcuat.mswipetech.co.in/mswipe-developer-portal/login',
+            '_blank'
+        );
+    }
+}
